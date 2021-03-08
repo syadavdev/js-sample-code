@@ -14,12 +14,19 @@ import StyleSheet from './components/StyleSheet'
 import Inline from './components/inline'
 import './appStyles.css'
 import styles from './appStyles.module.css'
-import Form from './components/Form';
+import Form from './components/Form'
+import FragmentDemo from './components/FragmentDemo'
+import Table from './components/Table'
+import PureCompo from './components/PureCompo'
+import ParentComp from './components/ParentComp';
 
 function App() {
   return (
     <div className="App">
-      <Form />
+      <ParentComp />
+      {/* <Table /> */}
+      {/* <FragmentDemo /> */}
+      {/* <Form /> */}
       {/* <h1 className='error'>Error</h1>
       <h1 className={styles.success}>Success</h1> */}
       {/* <EventBind></EventBind> */}
