@@ -19,11 +19,17 @@ import FragmentDemo from './components/FragmentDemo'
 import Table from './components/Table'
 import PureCompo from './components/PureCompo'
 import ParentComp from './components/ParentComp';
+import RefsDemo from './components/RefsDemo';
+import FocusInput from './components/FocusInput';
+import ForwardInputParentRef from './components/ForwardInputParentRef';
 
 function App() {
   return (
     <div className="App">
-      <ParentComp />
+      <ForwardInputParentRef />
+      {/* <FocusInput /> */}
+      {/* <RefsDemo /> */}
+      {/* <ParentComp /> */}
       {/* <Table /> */}
       {/* <FragmentDemo /> */}
       {/* <Form /> */}
