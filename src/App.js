@@ -23,11 +23,19 @@ import RefsDemo from './components/RefsDemo';
 import FocusInput from './components/FocusInput';
 import ForwardInputParentRef from './components/ForwardInputParentRef';
 import PortalDemo from './components/PortalDemo';
+import Hero from './components/Hero';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   return (
     <div className="App">
-      <PortalDemo />
+      <ErrorBoundary>
+        <Hero heroName='Shaktiman'/>
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Hero heroName='Joker'/>
+      </ErrorBoundary>
+      {/* <PortalDemo /> */}
       {/* <ForwardInputParentRef /> */}
       {/* <FocusInput /> */}
       {/* <RefsDemo /> */}
