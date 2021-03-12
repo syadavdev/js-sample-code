@@ -1,5 +1,6 @@
 import './App.css';
-import Greet from './components/Greet'
+import './appStyles.css'
+/* import Greet from './components/Greet'
 import Welcome from './components/Welcome'
 import Hello from './components/Hello'
 import Message from './components/Message'
@@ -12,7 +13,6 @@ import UserGreeting from './components/UserGreeting'
 import NameList from './components/NameList'
 import StyleSheet from './components/StyleSheet'
 import Inline from './components/inline'
-import './appStyles.css'
 import styles from './appStyles.module.css'
 import Form from './components/Form'
 import FragmentDemo from './components/FragmentDemo'
@@ -24,17 +24,21 @@ import FocusInput from './components/FocusInput';
 import ForwardInputParentRef from './components/ForwardInputParentRef';
 import PortalDemo from './components/PortalDemo';
 import Hero from './components/Hero';
-import ErrorBoundary from './components/ErrorBoundary';
+import ErrorBoundary from './components/ErrorBoundary'; */
+import ClickCounter from './components/ClickCounter';
+import HoverCounter from './components/HoverCounter';
 
 function App() {
   return (
     <div className="App">
-      <ErrorBoundary>
+      <ClickCounter name='Sandeep' />
+      <HoverCounter name='Yadav'/>
+      {/* <ErrorBoundary>
         <Hero heroName='Shaktiman'/>
       </ErrorBoundary>
       <ErrorBoundary>
         <Hero heroName='Joker'/>
-      </ErrorBoundary>
+      </ErrorBoundary> */}
       {/* <PortalDemo /> */}
       {/* <ForwardInputParentRef /> */}
       {/* <FocusInput /> */}
