@@ -1,5 +1,9 @@
 import './App.css';
 import './appStyles.css'
+import ClickCounterTwo from './components/ClickCounterTwo';
+import HoverCounterTwo from './components/HoverCounterTwo';
+import Counter from './Counter';
+import User from './User';
 /* import Greet from './components/Greet'
 import Welcome from './components/Welcome'
 import Hello from './components/Hello'
@@ -24,15 +28,29 @@ import FocusInput from './components/FocusInput';
 import ForwardInputParentRef from './components/ForwardInputParentRef';
 import PortalDemo from './components/PortalDemo';
 import Hero from './components/Hero';
-import ErrorBoundary from './components/ErrorBoundary'; */
+import ErrorBoundary from './components/ErrorBoundary'; 
 import ClickCounter from './components/ClickCounter';
-import HoverCounter from './components/HoverCounter';
+import HoverCounter from './components/HoverCounter';*/
 
 function App() {
   return (
     <div className="App">
-      <ClickCounter name='Sandeep' />
-      <HoverCounter name='Yadav'/>
+      <Counter> 
+        { (count, incrementCount ) => (
+        <ClickCounterTwo count={count} incrementCount={incrementCount} /> 
+        )}
+      </Counter>
+        
+      <Counter> 
+        { (count, incrementCount) => (
+        <HoverCounterTwo count={count} incrementCount={incrementCount} /> 
+        )}
+      </Counter>
+      {/* <ClickCounterTwo />
+      <HoverCounterTwo />
+      <User render={ (isLoggedIn) => isLoggedIn ? 'Sandeep' : 'guest' } /> */}
+      {/* <ClickCounter name='Sandeep' />
+      <HoverCounter name='Yadav'/> */}
       {/* <ErrorBoundary>
         <Hero heroName='Shaktiman'/>
       </ErrorBoundary>
