@@ -6,6 +6,8 @@ import Counter from './Counter';
 import User from './User';
 import { UserProvider } from './components/UserContext';
 import ComponentA from './components/ComponentA';
+import PostList from './components/PostList';
+import PostForm from './components/PostForm';
 /* import Greet from './components/Greet'
 import Welcome from './components/Welcome'
 import Hello from './components/Hello'
@@ -37,9 +39,11 @@ import HoverCounter from './components/HoverCounter';*/
 function App() {
   return (
     <div className="App">
-      <UserProvider value="Sandeep">
+      <PostForm />
+      {/* <PostList /> */}
+      {/* <UserProvider value="Sandeep">
         <ComponentA />
-      </UserProvider>
+      </UserProvider> */}
       {/* <Counter> 
         { (count, incrementCount ) => (
         <ClickCounterTwo count={count} incrementCount={incrementCount} /> 
