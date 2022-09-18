@@ -1,0 +1,14 @@
+docker build -t pgshard .
+
+docker run -d --name shard1 -p 5432:5432 -e POSTGRES_PASSWORD=postgres pgshard
+docker run -d --name shard2 -p 5433:5432 -e POSTGRES_PASSWORD=postgres pgshard
+docker run -d --name shard3 -p 5434:5432 -e POSTGRES_PASSWORD=postgres pgshard
+
+docker run -d -e PGADMIN_DEFAULT_EMAIL="sandi@gmail.com" -e PGADMIN_DEFAULT_PASSWORD="sandi" -p 5555:80 --name pgadmin dpage/pgadmin4'
+
+
+docker posgres shard problem :
+> docker inspect <continer-name>
+And copy the network-bridge-IPAddress
+
+fetch("http://localhost:8081/?url=https://wikipedia.com/sharding", {"method" : "POST"}).then(a=>a.json()).then(console.log);
