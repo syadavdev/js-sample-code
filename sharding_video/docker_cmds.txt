@@ -11,4 +11,6 @@ docker posgres shard problem :
 > docker inspect <continer-name>
 And copy the network-bridge-IPAddress
 
-fetch("http://localhost:8081/?url=https://wikipedia.com/sharding", {"method" : "POST"}).then(a=>a.json()).then(console.log);
+let urls = []
+for (let i = 0 ; i < 100; i++) urls.push(`https://google.co.in?q=text${i}`)
+urls.forEach(u => fetch(`http://localhost:8081/?url=${u}`, {"method" : "POST"}).then(a=>a.json()).then(console.log));

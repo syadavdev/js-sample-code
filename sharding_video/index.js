@@ -1,9 +1,8 @@
 const app = require("express")()
 const { Client } = require("pg")
-const ConsistentHash = require("consistent-hash")
 const crypto = require("crypto")
-
-const hr = new ConsistentHash()
+const HashRing = require("hashring")
+const hr = new HashRing()
 
 hr.add("5432")
 hr.add("5433")
@@ -41,21 +40,38 @@ async function connect() {
     await clients["5434"].connect();
 }
 
-app.get("/", (req, res) => {
-    res.send({
-        "ok" : 200
-    })
+app.get("/:urlId", async (req, res) => {
+
+    const urlId = req.params.urlId
+    const server = hr.get(urlId)
+
+    const result = await clients[server].query("select * from url_table where url_id = $1", [urlId])
+
+    if(result.rowCount > 0){
+        res.send({
+            "url" : result.rows[0].url,
+            "server" : server,
+            "urlId" : urlId
+        })
+    }
+    else{
+        res.sendStatus(404);
+    }
 })
 
-app.post("/", (req, res) => {
+app.post("/", async (req, res) => {
     const url = req.query.url;
 
     const hash = crypto.createHash("sha256").update(url).digest("base64")
     const urlId = hash.substr(0, 5);
+    const server = hr.get(urlId);
+
+    await clients[server].query("insert into url_table (url, url_id) values($1, $2)", [url, urlId])
 
     res.send({
         "urlId" : urlId,
-        
+        "url" : url,
+        "server" : server
     })
 })
 
