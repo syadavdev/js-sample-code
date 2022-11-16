@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\database_engine_testing.js"
+            "program": "${workspaceFolder}//database_engine_testing.js"
         }
     ]
 }

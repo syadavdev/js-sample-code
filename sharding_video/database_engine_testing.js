@@ -9,7 +9,7 @@ async function connectInnoDB(){
             "host": "localhost",
             "port": 3307,
             "user": "root",
-            "password": "password",
+            "password": "root",
             "database": "test"
         })
        await con.beginTransaction();
@@ -42,7 +42,7 @@ async function connectMyISAM(){
             "host": "localhost",
             "port": 3307,
             "user": "root",
-            "password": "password",
+            "password": "root",
             "database": "test"
         })
        await con.beginTransaction();
