@@ -1,7 +1,8 @@
+// To install this package use : npm install mysql2
 const mysql = require('mysql2/promise');
 
 connectInnoDB();
-connectMyISAM();
+connectMyISAM(); //This engine didn't support transaction, try to run this in debug mode.
 async function connectInnoDB(){
 
     try {

@@ -8,4 +8,4 @@ This folder is completly different from main repo. This folder conatain testing 
 
 ## Run any JS file
 To run it from VScode, you have to change launch.json file.
-From terminal, you can use node <filename>.
+From terminal, you can use node engine.
