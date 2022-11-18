@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "python",
+            "request": "launch",
+            "type": "python",
+            "program": "${workspaceFolder}//server_vs_client_cursor.py"
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
