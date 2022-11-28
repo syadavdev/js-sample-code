@@ -5,22 +5,33 @@ docker run -d --name shard1 -p 5432:5432 -e POSTGRES_PASSWORD=postgres pgshard
 docker run -d --name shard2 -p 5433:5432 -e POSTGRES_PASSWORD=postgres pgshard
 docker run -d --name shard3 -p 5434:5432 -e POSTGRES_PASSWORD=postgres pgshard
 
-docker run -d -e PGADMIN_DEFAULT_EMAIL="sandi@gmail.com" -e PGADMIN_DEFAULT_PASSWORD="sandi" -p 5555:80 --name pgadmin dpage/pgadmin4'
+docker run -d -e PGADMIN_DEFAULT_EMAIL="sandi@gmail.com" -e PGADMIN_DEFAULT_PASSWORD="sandi" -p 5555:80 --name pgadmin dpage/pgadmin4
 
 
 Docker postgres shard IP problem :
 docker inspect <continer-name>
 And copy the network-bridge-IPAddress
 
-Javascript for chrome console for connection pooling :
+Javascript for chrome console for shard testing:
 let urls = []
 for (let i = 0 ; i < 100; i++) urls.push(`https://google.co.in?q=text${i}`)
 urls.forEach(u => fetch(`http://localhost:8081/?url=${u}`, {"method" : "POST"}).then(a=>a.json()).then(console.log));
 
-
 Docker with volume(for replication) :
 docker run --name pmaster -p 5432:5432 -v C:\Users\sandi\Documents\sandeep-github\replication\pmaster_data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=postgres -d postgres:13
 docker run --name pstandby -p 5433:5432 -v C:\Users\sandi\Documents\sandeep-github\replication\pstandby_data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=postgres -d postgres:13
+Then stop both container & then ->
+1. Copy pmaster folder to pstandby(Need exact content in both folder)
+2. Then update in pmaster folder file pg_hba.conf, add this to last ->
+    host all all all md5
+    host replication postgres all md5
+3. Then goto pstandby folder & edit postgresql.conf file ->
+    primary_conninfo = 'application_name=standby1 host=192.168.1.7 port=5432 user=postgres password=postgres'
+    touch standby.signal
+4. Then goto pmaster folder & edit postgres.conf file ->
+    synchronous_standby_names = 'first 1 (standby1)'  /* We can give multiple replicas here & there prority(standby1, standby2) And first 1 means
+                                                        that master only wait for confirmation of first replication server. */
+5. Then restart the both containers.
 
 Postgres login cmd :
 psql -U postgres
@@ -29,3 +40,11 @@ Declare cursor :
 declare c cursor for <sql cmd>;
 fetch c;
 fetch last c;
+
+Enable ssl on Postgres server:
+1. Edit /var/lib/postgres/postgres.conf -> ssl = on, enable cert & key file.
+2. Run -> openssl req -x509 -newkey rsa:4096 -nodes -keyout private.pem -out cert.pem
+3. Then change private.pem file permission(by chmod) & also owner to postgres(by chown).
+
+Tracking through wireshark:
+Use postgres_connet_query.js file & open wireshark select loopback interface & apply filter `tcp.port == 5432`
