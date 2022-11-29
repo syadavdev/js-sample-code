@@ -28,9 +28,9 @@ const deletePool = new Pool({
     "max": 10
 })
 
-app.get("/read", async (req, res) => {
+app.get("/readAll", async (req, res) => {
 
-    const results = await readPool.query("select * from news limit 1000")
+    const results = await readPool.query("select url, url_id from url_table")
     
     console.table(results.rows)
 
@@ -38,11 +38,21 @@ app.get("/read", async (req, res) => {
 
 })
 
-app.get("/update/:urlId", async (req, res) => {
+app.post("/create", async (req, res) => {
+
+    const results = await readPool.query("insert into url_table(url, url_id) values($1, $2)", [url])
+    
+    console.table(results.rows)
+
+    res.send({"rows": results.rows })
+    
+})
+
+app.delete("/delete/:urlId", async (req, res) => {
 
     const urlId = req.params.urlId
 
-    const results = await readPool.query("select * from news limit 1000")
+    const results = await readPool.query("delete from url_table where id = $1",[urlId])
     
     console.table(results.rows)
 
