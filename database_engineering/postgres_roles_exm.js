@@ -10,10 +10,10 @@ const readPool = new Pool({
     "max": 10
 })
 
-const updatePool = new Pool({
+const createPool = new Pool({
     "host": "localhost",
     "port": 5432,
-    "user":"uUpdate",
+    "user":"uCreate",
     "password" : "postgres",
     "database" : "postgres",
     "max": 10
@@ -30,7 +30,7 @@ const deletePool = new Pool({
 
 app.get("/readAll", async (req, res) => {
 
-    const results = await readPool.query("select url, url_id from url_table")
+    const results = await readPool.query("select id, name from todo")
     
     console.table(results.rows)
 
@@ -38,9 +38,11 @@ app.get("/readAll", async (req, res) => {
 
 })
 
-app.post("/create", async (req, res) => {
+app.post("/create/:url", async (req, res) => {
 
-    const results = await readPool.query("insert into url_table(url, url_id) values($1, $2)", [url])
+    const url = req.params.url
+
+    const results = await createPool.query("insert into todo(name) values($1)", [url])
     
     console.table(results.rows)
 
@@ -52,7 +54,7 @@ app.delete("/delete/:urlId", async (req, res) => {
 
     const urlId = req.params.urlId
 
-    const results = await readPool.query("delete from url_table where id = $1",[urlId])
+    const results = await deletePool.query("delete from todo where id = $1",[urlId])
     
     console.table(results.rows)
 
