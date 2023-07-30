@@ -1,0 +1,11 @@
+Web socket from browser console :
+//client code 
+//let ws = new WebSocket("ws://localhost:8080");
+//ws.onmessage = message => console.log(`Received: ${message.data}`);
+//ws.send("Hello! I'm client")
+
+UDP protocol test cmd :
+nc -u 127.0.0.1 5543
+
+TCP protocol test cmd : 
+nc 127.0.0.1 8081
