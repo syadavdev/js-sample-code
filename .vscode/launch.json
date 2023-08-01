@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\backend_engineering\\chatingApp.js"
+            "program": "${workspaceFolder}\\backend_engineering\\grpc-connention\\gRPC_connection.js"
         }
     ]
 }
