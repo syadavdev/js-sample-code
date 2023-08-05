@@ -11,7 +11,16 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\backend_engineering\\grpc-connention\\gRPC_connection.js"
+            "program": "${workspaceFolder}\\backend_engineering\\grpc_connection\\client.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Linux GRPC Client",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/backend_engineering/grpc-connection/client.js"   
         }
     ]
 }
