@@ -7,11 +7,12 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Windows GRPC Client",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\backend_engineering\\grpc_connection\\client.js"
+            "program": "${workspaceFolder}\\backend_engineering\\grpc-connection\\client.js",
+            "cwd" : "${workspaceFolder}\\backend_engineering\\grpc-connection\\"
         },
         {
             "type": "node",
@@ -20,7 +21,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/backend_engineering/grpc-connection/client.js"   
+            "program": "${workspaceFolder}/backend_engineering/grpc-connection/client.js",
+            "cwd" : "${workspaceFolder}/backend_engineering/grpc-connection/"
         }
     ]
 }

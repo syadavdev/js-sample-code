@@ -11,19 +11,19 @@ client.createTodo(
     {"id" : -1,
     "text" : text}, 
     (err, response) => {
-        console.log(`recieve err ${JSON.stringify(err)} & response ${JSON.stringify(response)}`)
+        console.log(`recieve create Todo response : ${JSON.stringify(response)}`)
 })
 
-client.readTodos({},
-    (err, response) => {
-        response.items.forEach(element => {
-            console.log(element.text) 
-    });
-})
+// client.readTodos({},
+//     (err, response) => {
+//         response.items.forEach(element => {
+//             console.log("receive read todo from server : " + element.text) 
+//     });
+// })
 
 const call = client.readTodosStream()
 call.on("data", item => {
-    console.log("received from server : " + item)
+    console.log("received read Todo streams from server : " + JSON.stringify(item))
 })
 
 call.on("end", e => {
