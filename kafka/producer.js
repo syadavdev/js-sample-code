@@ -8,7 +8,7 @@ async function run(){
 
         const kafka = new Kafka({
             "clientId": "myapp",
-            "brokers": ["DESKTOP-H1G2SFO:9092"]
+            "brokers": ["DESKTOP-H1G2SFO:29092"]
         })
 
         const producer = kafka.producer()
@@ -17,7 +17,7 @@ async function run(){
         console.log("Connected")
         const partition = msg[0] < "N" ? 0 : 1
         const result = await producer.send({
-            "topic": "Users",
+            "topic": "kafka.streams.test",
             "messages": [
                 {
                     "value": msg,
