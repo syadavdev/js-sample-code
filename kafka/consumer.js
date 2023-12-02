@@ -7,7 +7,7 @@ async function run(){
 
         const kafka = new Kafka({
             "clientId": "myapp",
-            "brokers": ["DESKTOP-H1G2SFO:9092"]
+            "brokers": ["localhost:29093"]
         })
 
         const consumer = kafka.consumer({"groupId" : "test"})
@@ -16,7 +16,7 @@ async function run(){
         console.log("Connected")
 
         consumer.subscribe({
-            "topic": "Users",
+            "topic": "topic1",
             "fromBeginning": true
         })
 

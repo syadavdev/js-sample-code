@@ -7,6 +7,16 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "MongoDB",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\mongodb_query.js",
+            "cwd" : "${workspaceFolder}\\"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Windows GRPC Client",
             "skipFiles": [
                 "<node_internals>/**"

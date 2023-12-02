@@ -25,17 +25,16 @@
 // run().catch(console.dir);
 
 
-
-
+require("sslkeylog").hookAll()
 const {MongoClient} = require("mongodb")
 
-const uri = "mongodb+srv://bewili3391:OgM6IQRPsNKV9pwq@cluster0.paoolqy.mongodb.net/?retryWrites=true&w=majority"
+const uri = "http://localhost:27017"
 
-const client = new MongoClient(uri, { useNewUrlParser: true })
+const client = new MongoClient(uri)
 
 async function connect() {
     try {
-        await client.connect({ useNewUrlParser: true });
+        await client.connect();
         const db = client.db("wireshark");
         console.log(`Connected to database ${db.databaseName}`)
         
@@ -64,3 +63,5 @@ async function connect() {
     }
 
 }
+
+connect()
